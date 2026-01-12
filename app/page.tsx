@@ -10,6 +10,7 @@ import {
   Stack,
   Paper,
 } from "@mantine/core";
+import YouTubePlayer from "./components/YouTubePlayer";
 
 export default function Home() {
   const [count, setCount] = useState(0);
@@ -27,6 +28,10 @@ export default function Home() {
 
   const adjustCount = (value: number) => {
     setCount((prev) => prev + value);
+  };
+
+  const handleTrackEnd = () => {
+    setCount((prev) => prev + 1);
   };
 
   return (
@@ -138,14 +143,9 @@ export default function Home() {
                 </Group>
               </Stack>
 
-              <Button
-                variant="outline"
-                color="gray"
-                onClick={() => setCount(0)}
-                fullWidth
-              >
-                Reset
-              </Button>
+              <div style={{ width: "100%", marginTop: "1rem" }}>
+                <YouTubePlayer onTrackEnd={handleTrackEnd} />
+              </div>
             </Stack>
           </Paper>
         </Stack>
